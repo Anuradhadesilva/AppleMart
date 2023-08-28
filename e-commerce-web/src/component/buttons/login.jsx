@@ -8,7 +8,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:8080/api/v1/customer/login",
+        "http://localhost:8080/api/auth/login",
         {
           method: "POST",
           headers: {
@@ -23,6 +23,7 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
+       
         if (data.message === "Email not exist") {
           alert("Email not exist");
         } else if (data.message === "Login Success") {

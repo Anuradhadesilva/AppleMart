@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const SignUp = () => {
-  const [customerName, setCustomerName] = useState("");
+  const [fullName, setfullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -9,14 +9,14 @@ const SignUp = () => {
     event.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:8080/api/v1/customer/save",
+        "http://localhost:8080/api/auth/register",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            customerName: customerName,
+            fullName: fullName,
             email: email,
             password: password,
           }),
@@ -25,6 +25,7 @@ const SignUp = () => {
 
       if (response.ok) {
         alert("Successful!!");
+      
       } else {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -84,9 +85,9 @@ const SignUp = () => {
                     type="text"
                     className="form-control"
                     id="exampleInputName1"
-                    value={customerName}
+                    value={fullName}
                     onChange={(event) => {
-                      setCustomerName(event.target.value);
+                      setfullName(event.target.value);
                     }}
                     // aria-describedby="emailHelp"
                   />
